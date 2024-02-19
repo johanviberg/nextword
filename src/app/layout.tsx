@@ -7,8 +7,6 @@ import '@/styles/colors.css';
 
 import { siteConfig } from '@/constant/config';
 
-// !STARTERCONF Change these default meta
-// !STARTERCONF Look at @/constant/config to change them
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -39,14 +37,14 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     images: [`${siteConfig.url}/images/og.jpg`],
-    // creator: '@th_clarence',
+    creator: '@NextWordAI',
   },
-  // authors: [
-  //   {
-  //     name: 'Theodorus Clarence',
-  //     url: 'https://theodorusclarence.com',
-  //   },
-  // ],
+  authors: [
+    {
+      name: 'NextWordAI',
+      url: 'https://nextword.ai',
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -56,7 +54,7 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <body>{children}</body>
+      <body lang='en'>{children}</body>
     </html>
   );
 }
