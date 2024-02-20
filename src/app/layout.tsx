@@ -6,6 +6,9 @@ import "@/styles/globals.css";
 
 import { cn } from "@/lib/utils";
 
+import { Footer } from "@/components/Footer";
+import { Sidebar } from "@/components/Sidebar";
+
 import { siteConfig } from "@/constant/config";
 
 const fontSans = FontSans({
@@ -56,7 +59,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn("flex h-full flex-col scroll-smooth bg-white antialiased", fontSans.className)}>{children}</body>
+      <body className={cn("flex flex-col h-full scroll-smooth bg-white antialiased", fontSans.className)}>
+        <div className="flex">
+          <Sidebar />
+          <div className="flex flex-col flex-grow">
+            <main className="pl-24 flex-grow">{children}</main>
+            <Footer />
+          </div>
+        </div>
+      </body>
     </html>
   );
 }
