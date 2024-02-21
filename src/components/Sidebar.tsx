@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FaTwitter } from "react-icons/fa";
+import { MdArticle, MdBatchPrediction, MdBuild, MdLibraryBooks, MdPayment, MdSettings, MdSettingsInputComponent } from "react-icons/md";
 
 export const Sidebar = () => {
   // TODO: Add links/routes and handle active states with next/router
@@ -17,7 +17,7 @@ export const Sidebar = () => {
             className="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-gray-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none"
           >
             <div className="grid place-items-center mr-4">
-              <FaTwitter className="h-5 w-5" />
+              <MdArticle className="h-5 w-5" />
             </div>
             Single Articles
           </div>
@@ -26,7 +26,7 @@ export const Sidebar = () => {
             className="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none"
           >
             <div className="grid place-items-center mr-4">
-              <FaTwitter className="h-5 w-5" />
+              <MdBatchPrediction className="h-5 w-5" />
             </div>
             Batch Generator
           </div>
@@ -35,7 +35,7 @@ export const Sidebar = () => {
             className="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none"
           >
             <div className="grid place-items-center mr-4">
-              <FaTwitter className="h-5 w-5" />
+              <MdBuild className="h-5 w-5" />
             </div>
             Custom Formats{" "}
             <div className="grid place-items-center ml-auto justify-self-end">
@@ -52,7 +52,7 @@ export const Sidebar = () => {
             className="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none"
           >
             <div className="grid place-items-center mr-4">
-              <FaTwitter className="h-5 w-5" />
+              <MdSettingsInputComponent className="h-5 w-5" />
             </div>
             Integrations
           </div>
@@ -61,7 +61,7 @@ export const Sidebar = () => {
             className="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none"
           >
             <div className="grid place-items-center mr-4">
-              <FaTwitter className="h-5 w-5" />
+              <MdSettings className="h-5 w-5" />
             </div>
             Article Settings
           </div>
@@ -70,7 +70,7 @@ export const Sidebar = () => {
             className="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none"
           >
             <div className="grid place-items-center mr-4">
-              <FaTwitter className="h-5 w-5" />
+              <MdLibraryBooks className="h-5 w-5" />
             </div>
             My Articles
           </div>
@@ -79,7 +79,7 @@ export const Sidebar = () => {
             className="flex items-center w-full p-3 rounded-lg text-start leading-tight transition-all hover:bg-blue-50 hover:bg-opacity-80 focus:bg-blue-50 focus:bg-opacity-80 active:bg-blue-50 active:bg-opacity-80 hover:text-blue-900 focus:text-blue-900 active:text-blue-900 outline-none"
           >
             <div className="grid place-items-center mr-4">
-              <FaTwitter className="h-5 w-5" />
+              <MdPayment className="h-5 w-5" />
             </div>
             Billing
           </div>
