@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 
 import { Footer } from "@/components/Footer";
 import { Sidebar } from "@/components/Sidebar";
+import { Toaster } from "@/components/ui/sonner";
 
 import { siteConfig } from "@/constant/config";
 
@@ -65,6 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="flex flex-col flex-grow">
             <main className="pl-24 flex-grow">{children}</main>
             <Footer />
+            <Toaster />
           </div>
         </div>
       </body>
