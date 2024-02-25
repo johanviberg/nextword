@@ -8,7 +8,7 @@ module.exports = {
   extends: ["eslint:recommended", "next", "next/core-web-vitals", "plugin:@typescript-eslint/recommended", "prettier"],
   rules: {
     "no-unused-vars": "off",
-    "no-console": "warn",
+    "no-console": "off",
     "max-len": [
       "error",
       {
