@@ -25,6 +25,7 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   robots: { index: true, follow: true },
+  // TODO: Replace with own favicon
   // !STARTERCONF this is the default favicon, you can generate your own from https://realfavicongenerator.net/
   // ! copy to /favicon folder
   icons: {
@@ -64,7 +65,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="flex">
           <Sidebar />
           <div className="flex flex-col flex-grow">
-            <main className="pl-24 flex-grow">{children}</main>
+            {/* TODO: Set a minimum width for the main content area */}
+            <main className="pl-24 pr-24 flex-grow mt-10">{children}</main>
             <Footer />
             <Toaster />
           </div>
