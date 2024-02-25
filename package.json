@@ -35,6 +35,8 @@
     "sonner": "^1.4.1",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
+    "winston": "^3.11.0",
+    "winston-slack-webhook-transport": "^2.3.4",
     "zod": "^3.22.4"
   },
   "devDependencies": {
