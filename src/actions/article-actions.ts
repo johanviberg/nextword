@@ -2,37 +2,49 @@
 
 import OpenAI from "openai";
 
-export type ActionResponse = {
-  status: "success";
+import logger from "@/lib/logger";
+
+import { Article, SingleArticleGenerationSchema } from "@/types/articles";
+
+// TODO: Refactor into a more generic type (possibly with a class hierarchy e.g. a base response)
+export type CreateArticleActionResponse = {
+  status: "success" | "error";
   message: string;
+  article: Article | null;
 } | null;
 
-export async function getFullName(prevState: ActionResponse | null, data: FormData): Promise<ActionResponse> {
-  // we're going put a delay in here to simulate some kind of data processing like persisting data
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
-  return {
-    status: "success",
-    message: `Welcome, ${data.get("firstName")} ${data.get("lastName")}!`,
-  };
-}
-
-export async function generateSingleArticle(title: string, mode: string): Promise<ActionResponse> {
-  console.log("Generating article using OpenAI with title:", title, "and mode:", mode);
-  // we're going put a delay in here to simulate some kind of data processing like persisting data
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
-  // TODO: Validate the mode and title using zod (see schema used in SingleArticleGenerationForm)
+export async function generateSingleArticle(title: string, mode: string): Promise<CreateArticleActionResponse> {
+  logger.debug(`Generating article using OpenAI with title: "${title}" and mode: "${mode}"`);
+  let validatedInput;
+  try {
+    validatedInput = SingleArticleGenerationSchema.parse({
+      title: title,
+      mode: mode,
+    });
+  } catch (error) {
+    logger.error("Server-side validation failed for the article generation request", error);
+    return { status: "error", message: `Invalid form input provided: ${error}`, article: null };
+  }
 
   // TODO: Persist the article to the database with a pending generation status
 
-  const articleResponse = await generateArticle(title, 1500);
+  const wordCount = 1500; // TODO: Extract to constants file (and allow user to specify with limits)
+  const articleResponse = await generateArticle(validatedInput.title, wordCount);
+  logger.debug(`Generated article OpenAI response: ${JSON.stringify(articleResponse, null, 2)}`);
 
   // TODO: Update the article in the database with the generated content and completion status (or error)
 
   return {
     status: "success",
-    message: articleResponse,
+    message: "The article was successfully scheduled to be generated",
+    article: {
+      guid: "c9d69962-6d41-46d0-aadc-d54fc6207de0",
+      title: title,
+      mode: "title",
+      content: null,
+      //status: randomStatus as "pending" | "completed" | "error",
+      status: "pending",
+    },
   };
 }
 
@@ -112,10 +124,10 @@ const generateArticle = async (title: string, wordCount = 1500) => {
     try {
       return JSON.parse(articleResponseAsJsonString);
     } catch (error) {
-      console.log("Unable to parse and validate extracted content from OpenAI as JSON", error);
+      logger.warn("Unable to parse and validate extracted content from OpenAI as JSON", error);
     }
   } else {
-    console.log("Unexpected null response from OpenAI's chat completion API while refining feed item content");
+    logger.warn("Unexpected null response from OpenAI's chat completion API while generating article");
   }
   return null;
 };

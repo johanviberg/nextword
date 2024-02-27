@@ -14,7 +14,7 @@ type ArticlePageProps = {
   params: GuidParams;
 };
 
-const ArticlePage: React.FC<ArticlePageProps> = async ({ params }: ArticlePageProps) => {
+export default function ArticlePage({ params }: ArticlePageProps) {
   let guid: string;
   try {
     const result = guidSchema.parse(params);
@@ -31,7 +31,7 @@ const ArticlePage: React.FC<ArticlePageProps> = async ({ params }: ArticlePagePr
 
   return (
     <>
-      <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">Article Page</h4>
+      <h4 className="scroll-m-20 text-xl font-semibold tracking-tight mt-10">Article Page</h4>
       <div className="flex flex-col mt-5 space-y-2.5">
         {/* TODO: Replace with dynamic values from the fetched article */}
         <div>Generation Mode: Article Title</div>
@@ -47,6 +47,4 @@ const ArticlePage: React.FC<ArticlePageProps> = async ({ params }: ArticlePagePr
       </div>
     </>
   );
-};
-
-export default ArticlePage;
+}

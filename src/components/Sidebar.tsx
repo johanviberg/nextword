@@ -3,7 +3,7 @@ import * as React from "react";
 import { MdArticle, MdBatchPrediction, MdBuild, MdLibraryBooks, MdPayment, MdSettings, MdSettingsInputComponent } from "react-icons/md";
 
 export const Sidebar = () => {
-  // TODO: Add links/routes and handle active states with next/router
+  // TODO: Add links/routes and handle active states with next/navigation
   // TODO: Add separators in the sidebar items
 
   return (
@@ -31,7 +31,7 @@ export const Sidebar = () => {
             <div className="grid place-items-center mr-4">
               <MdBatchPrediction className="h-5 w-5" />
             </div>
-            Batch Generator
+            <Link href="/generate/batch">Batch Generator</Link>
           </div>
           <div
             role="button"
@@ -40,15 +40,7 @@ export const Sidebar = () => {
             <div className="grid place-items-center mr-4">
               <MdBuild className="h-5 w-5" />
             </div>
-            Custom Formats{" "}
-            <div className="grid place-items-center ml-auto justify-self-end">
-              <div
-                className="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-blue-500/20 text-blue-900 py-1 px-2 text-xs rounded-full"
-                style={{ opacity: 1 }}
-              >
-                <span className="">14</span>
-              </div>
-            </div>
+            Custom Formats
           </div>
           <div
             role="button"
@@ -75,7 +67,15 @@ export const Sidebar = () => {
             <div className="grid place-items-center mr-4">
               <MdLibraryBooks className="h-5 w-5" />
             </div>
-            My Articles
+            <Link href="/articles">My Articles</Link>{" "}
+            <div className="grid place-items-center ml-auto justify-self-end">
+              <div
+                className="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-blue-500/20 text-blue-900 py-1 px-2 text-xs rounded-full"
+                style={{ opacity: 1 }}
+              >
+                <span className="">14</span>
+              </div>
+            </div>
           </div>
           <div
             role="button"

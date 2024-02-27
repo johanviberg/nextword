@@ -2,14 +2,14 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import React, { useContext } from "react";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
 import { cn } from "@/lib/utils";
 
-import { LoadingContext } from "@/components/SingleArticleGeneration";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { LoadingButton } from "@/components/ui/loading-button";
@@ -17,45 +17,40 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 import { generateSingleArticle } from "@/actions/article-actions";
 
-const SingleArticleGenerationSchema = z.object({
-  generationMode: z.string({
-    required_error: "Please select a generation mode to use.",
-  }),
-  articleTitle: z
-    .string({
-      required_error: "Please enter your article title.",
-    })
-    .min(3, "Your article title must be at least 3 characters long."),
-});
+import { SingleArticleGenerationSchema } from "@/types/articles";
 
 export function SingleArticleGenerationForm() {
   const form = useForm<z.infer<typeof SingleArticleGenerationSchema>>({
     resolver: zodResolver(SingleArticleGenerationSchema),
   });
+  const [loading, setLoading] = useState(false);
 
-  const context = useContext(LoadingContext);
+  const router = useRouter();
 
-  if (!context) {
-    console.log("Error: No context found when generating single article");
-    throw new Error("LoadingContext is undefined. Ensure the component is wrapped in a LoadingContext.Provider.");
-  }
-
-  const { loading, setLoading } = context;
   const onGenerateArticle = async (data: z.infer<typeof SingleArticleGenerationSchema>) => {
     try {
       setLoading(true);
 
-      const resp = await generateSingleArticle(data.articleTitle, data.generationMode);
+      const resp = await generateSingleArticle(data.title, data.mode);
       if (!resp) {
-        toast.error("An error occurred while generating the article. Please try again.");
+        toast.error("An unknown error occurred while generating the article. Please try again.");
       } else {
-        toast.message("Success! Here is the article:", {
-          description: (
-            <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-              <code className="text-white">{JSON.stringify(resp.message, null, 2)}</code>
-            </pre>
-          ),
-        });
+        if (resp.status === "error") {
+          toast.error(`An error occurred while generating the article. Please try again. ${resp.message}`);
+        } else {
+          if (resp.article) {
+            toast.message("Great News", {
+              description: "Your article is being generated 🎉",
+              action: {
+                label: "Create Another",
+                onClick: () => router.push("/generate/single"),
+              },
+            });
+            router.push(`/articles/${resp.article.guid}`);
+          } else {
+            toast.error("An unexpected error occurred while generating the article. Please try again.");
+          }
+        }
       }
     } catch (error) {
       toast.error("An error occurred while generating the article. Please try again.");
@@ -70,14 +65,14 @@ export function SingleArticleGenerationForm() {
         <form onSubmit={form.handleSubmit(onGenerateArticle)} className="w-2/3 space-y-6">
           <FormField
             control={form.control}
-            name="generationMode"
+            name="mode"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Generation Mode</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value} disabled={loading}>
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select a content generation mode" />
+                      <SelectValue placeholder="Select how you want to generate the article" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -96,7 +91,7 @@ export function SingleArticleGenerationForm() {
           />
           <FormField
             control={form.control}
-            name="articleTitle"
+            name="title"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Article Title</FormLabel>
@@ -111,7 +106,7 @@ export function SingleArticleGenerationForm() {
             )}
           />
           <LoadingButton type="submit" disabled={!form.formState.isValid || loading} loading={loading}>
-            Generate
+            {loading ? "Scheduling..." : "Generate"}
           </LoadingButton>
         </form>
       </Form>
