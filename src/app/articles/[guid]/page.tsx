@@ -21,7 +21,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
     guid = result.guid;
   } catch (error) {
     // TODO: Replace with logging library
-    console.log("Error: guid not found: ", error);
+    console.log("Warning: guid not found: ", error);
     notFound();
   }
   // TODO: Replace with logging library
@@ -38,6 +38,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
         <div>Article Title: "How to make a website"</div>
         <div>Created: February 25, 2024 at 9:12 am (local time)</div>
         {/* TODO: Add an animated icon to show an article in progress, failed, success */}
+        {/* TODO: Add dynamically updated badge (use button variant depending on result) */}
         <div>Status: Completed Successfully</div>
         <div className="pt-8">
           {/* TODO: Add an event handler to show a modal with the markdown article */}
