@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-  pull_request: {}
+  pull_request: { }
 
 concurrency:
   group: ${{ github.job }}-${{ github.ref }}
@@ -15,15 +15,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: 🤌 Setup pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v3
         with:
           version: 8
 
       - name: ⎔ Setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "pnpm"
