@@ -2,6 +2,7 @@
 
 import OpenAI from "openai";
 
+import prisma from "@/lib/db";
 import logger from "@/lib/logger";
 
 import { Article, SingleArticleGenerationSchema } from "@/types/articles";
@@ -27,6 +28,10 @@ export async function generateSingleArticle(title: string, mode: string): Promis
   }
 
   // TODO: Persist the article to the database with a pending generation status
+
+  // TODO: Review BF logic and use it to create the article including error handling
+  const newArticle = await prisma.article.create({ data: { title: "Hello title", content: "Stuff" } });
+  logger.debug(`Created new article in the database: ${JSON.stringify(newArticle, null, 2)}`);
 
   const wordCount = 1500; // TODO: Extract to constants file (and allow user to specify with limits)
   const articleResponse = await generateArticle(validatedInput.title, wordCount);
