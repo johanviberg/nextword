@@ -13,7 +13,6 @@ export interface NavLink {
   title: string;
   label?: string;
   icon: LucideIcon | React.ElementType;
-  variant: "default" | "ghost";
   href: string;
 }
 
@@ -22,42 +21,36 @@ const navLinks: NavLink[] = [
     title: "Single Article",
     label: "128",
     icon: FileText,
-    variant: "default",
     href: "/generate/single",
   },
   {
     title: "Batch Articles",
     label: "9",
     icon: Layers,
-    variant: "ghost",
     href: "/generate/batch",
   },
   {
     title: "Custom Formats",
     label: "",
     icon: Settings2,
-    variant: "ghost",
     href: "/formats",
   },
   {
     title: "Integrations",
     label: "23",
     icon: Plug,
-    variant: "ghost",
     href: "/integrations",
   },
   {
     title: "Article Settings",
     label: "",
     icon: Settings,
-    variant: "ghost",
     href: "/settings",
   },
   {
     title: "My Articles",
     label: "",
     icon: Archive,
-    variant: "ghost",
     href: "/articles",
   },
 ];
@@ -84,8 +77,10 @@ export function Sidebar() {
             )}
           >
             <link.icon className="mr-2 h-4 w-4" />
-            <span className="font-semibold">{link.title}</span>
-            {link.label && <span className={cn("ml-auto", link.variant === "default" && "text-background")}>{link.label}</span>}
+            <span className="text-gray-800">{link.title}</span>
+            {link.label && (
+              <span className={cn("ml-auto", pathname === link.href ? "text-background text-gray-800" : "")}>{link.label}</span>
+            )}
           </Link>
         ))}
       </nav>
