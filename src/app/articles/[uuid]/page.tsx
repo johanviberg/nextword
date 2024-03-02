@@ -4,21 +4,21 @@ import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
 
-const guidSchema = z.object({
-  guid: z.string().uuid(),
+const uuidSchema = z.object({
+  uuid: z.string().uuid(),
 });
 
-type GuidParams = z.infer<typeof guidSchema>;
+type UuidParams = z.infer<typeof uuidSchema>;
 
 type ArticlePageProps = {
-  params: GuidParams;
+  params: UuidParams;
 };
 
 export default function ArticlePage({ params }: ArticlePageProps) {
   let guid: string;
   try {
-    const result = guidSchema.parse(params);
-    guid = result.guid;
+    const result = uuidSchema.parse(params);
+    guid = result.uuid;
   } catch (error) {
     // TODO: Replace with logging library
     console.log("Warning: guid not found: ", error);

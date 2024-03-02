@@ -46,7 +46,7 @@ export function SingleArticleGenerationForm() {
                 onClick: () => router.push("/generate/single"),
               },
             });
-            router.push(`/articles/${resp.article.guid}`);
+            router.push(`/articles/${resp.article.uuid}`);
           } else {
             toast.error("An unexpected error occurred while generating the article. Please try again.");
           }

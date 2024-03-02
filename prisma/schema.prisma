@@ -9,13 +9,25 @@ datasource db {
 }
 
 model Article {
-  id          Int       @id @default(autoincrement())
-  uuid        String    @unique @default(uuid())
-  title       String    @db.VarChar(255)
-  content     String?   @db.Text
-  generatedAt DateTime? @map("generated_at") @db.Timestamp(6)
-  createdAt   DateTime  @default(now()) @map("created_at")
-  updatedAt   DateTime  @default(now()) @updatedAt @map("updated_at")
+  id          Int           @id @default(autoincrement())
+  uuid        String        @unique @default(uuid())
+  title       String        @db.VarChar(255)
+  content     String?       @db.Text
+  status      ArticleStatus @default(PENDING)
+  // TODO: Add regenerated count
+  generatedAt DateTime?     @map("generated_at") @db.Timestamp(6)
+  // TODO: Add user ID
+  // TODO: Add org ID
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @default(now()) @updatedAt @map("updated_at")
 
   @@map("articles")
 }
+
+enum ArticleStatus {
+  PENDING
+  ERROR
+  COMPLETE
+}
+
+// TODO: Add article image model with a foreign key to article
