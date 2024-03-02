@@ -1,5 +1,5 @@
+import { GeistSans } from "geist/font/sans";
 import { Metadata } from "next";
-import { Inter as FontSans } from "next/font/google";
 import * as React from "react";
 
 import "@/styles/globals.css";
@@ -11,11 +11,6 @@ import { Sidebar } from "@/components/Sidebar";
 import { Toaster } from "@/components/ui/sonner";
 
 import { siteConfig } from "@/constant/config";
-
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -61,7 +56,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn("flex h-full flex-col scroll-smooth bg-white antialiased", fontSans.className)}>
+      <body className={cn("flex h-full flex-col scroll-smooth bg-white antialiased", GeistSans.className)}>
         <div className="flex">
           <Sidebar />
           <div className="flex flex-grow flex-col">

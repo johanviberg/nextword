@@ -1,7 +1,4 @@
 import type { Config } from "tailwindcss";
-import defaultTheme from "tailwindcss/defaultTheme";
-
-const fontFamily = defaultTheme.fontFamily;
 
 const config = {
   darkMode: ["class"],
@@ -9,7 +6,7 @@ const config = {
   prefix: "",
   theme: {
     fontFamily: {
-      sans: ["var(--font-sans)", ...fontFamily.sans],
+      sans: ["var(--font-geist-sans)"],
     },
     container: {
       center: true,
@@ -20,7 +17,7 @@ const config = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-sans)", ...fontFamily.sans],
+        sans: ["var(--font-geist-sans)"],
       },
       colors: {
         border: "hsl(var(--border))",
