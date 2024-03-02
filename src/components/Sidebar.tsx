@@ -59,10 +59,10 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <div className="group flex flex-col gap-4 py-2 h-[calc(100vh)] w-full max-w-[16rem] shadow-xl shadow-blue-gray-900/5">
+    <div className="shadow-blue-gray-900/5 group flex h-[calc(100vh)] w-full max-w-[16rem] flex-col gap-4 py-2 shadow-xl">
       <div className="mb-2 p-4">
         <Link href="/">
-          <h5 className="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-gray-900">nextword</h5>
+          <h5 className="block font-sans text-xl font-semibold leading-snug tracking-normal text-gray-900 antialiased">nextword</h5>
         </Link>
       </div>
       <nav className="grid gap-1 px-2 group-[[data-collapsed=true]]:justify-center group-[[data-collapsed=true]]:px-2">

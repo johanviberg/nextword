@@ -31,8 +31,8 @@ export default function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <>
-      <h4 className="scroll-m-20 text-xl font-semibold tracking-tight mt-10">Article Page</h4>
-      <div className="flex flex-col mt-5 space-y-2.5">
+      <h4 className="mt-10 scroll-m-20 text-xl font-semibold tracking-tight">Article Page</h4>
+      <div className="mt-5 flex flex-col space-y-2.5">
         {/* TODO: Replace with dynamic values from the fetched article */}
         <div>Generation Mode: Article Title</div>
         <div>Article Title: "How to make a website"</div>

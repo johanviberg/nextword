@@ -5,7 +5,7 @@ import { SingleArticleGenerationForm } from "@/components/SingleArticleGeneratio
 export default function SingleArticleGeneratorPage() {
   return (
     <>
-      <h1 className="text-xl font-semibold mt-10">Single Article Generator</h1>
+      <h1 className="mt-10 text-xl font-semibold">Single Article Generator</h1>
       <div className="mt-10">
         <SingleArticleGenerationForm />
       </div>
