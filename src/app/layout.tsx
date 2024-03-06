@@ -11,6 +11,7 @@ import { Sidebar } from "@/components/Sidebar";
 import { Toaster } from "@/components/ui/sonner";
 
 import { siteConfig } from "@/constant/config";
+import { ReactQueryClientProvider } from "@/providers/ReactQueryClientProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -57,15 +58,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn("flex h-full flex-col scroll-smooth bg-white antialiased", GeistSans.className)}>
-        <div className="flex">
-          <Sidebar />
-          <div className="flex flex-grow flex-col">
-            {/* TODO: Set a minimum width for the main content area */}
-            <main className="mt-10 flex-grow pl-24 pr-24">{children}</main>
-            <Footer />
-            <Toaster />
+        <ReactQueryClientProvider>
+          <div className="flex">
+            <Sidebar />
+            <div className="flex flex-grow flex-col">
+              {/* TODO: Set a minimum width for the main content area */}
+              <main className="mt-10 flex-grow pl-24 pr-24">{children}</main>
+              <Footer />
+              <Toaster />
+            </div>
           </div>
-        </div>
+        </ReactQueryClientProvider>
       </body>
     </html>
   );
