@@ -17,7 +17,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 import { generateSingleArticle } from "@/actions/article-actions";
 
-import { SingleArticleGenerationSchema } from "@/types/articles";
+import { SingleArticleGenerationSchema } from "@/types/schemas/article";
 
 export function SingleArticleGenerationForm() {
   const form = useForm<z.infer<typeof SingleArticleGenerationSchema>>({
@@ -38,7 +38,7 @@ export function SingleArticleGenerationForm() {
         if (resp.status === "error") {
           toast.error(`An error occurred while generating the article. Please try again. ${resp.message}`);
         } else {
-          if (resp.article) {
+          if (resp.data) {
             toast.message("Great News", {
               description: "Your article is being generated 🎉",
               action: {
@@ -46,7 +46,7 @@ export function SingleArticleGenerationForm() {
                 onClick: () => router.push("/generate/single"),
               },
             });
-            router.push(`/articles/${resp.article.uuid}`);
+            router.push(`/articles/${resp.data.uuid}`);
           } else {
             toast.error("An unexpected error occurred while generating the article. Please try again.");
           }

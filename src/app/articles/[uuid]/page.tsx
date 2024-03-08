@@ -2,9 +2,9 @@ import { notFound } from "next/navigation";
 import React from "react";
 import { z } from "zod";
 
-import { getArticleByUuid } from "@/lib/crud/article";
-
 import { ArticleDetails } from "@/components/articles/ArticleDetails";
+
+import { getArticleByUuid } from "@/db/crud/article";
 
 const uuidSchema = z.object({
   uuid: z.string().uuid(),
