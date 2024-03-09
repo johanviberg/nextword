@@ -13,27 +13,29 @@ model Article {
   uuid        String        @unique @default(uuid())
   title       String        @db.VarChar(255)
   content     String?       @db.Text
+  // TODO: Rename status to generationStatus
   status      ArticleStatus @default(PENDING)
   // TODO: Add regenerated count
   generatedAt DateTime?     @map("generated_at") @db.Timestamp(6)
   // TODO: Add user ID
   // TODO: Add org ID
   // TODO: Add regenerated_count
+  // TODO: Add edited_at
   // TODO: Add archived_at
   // TODO: Add deleted_at (soft delete)
   // TODO: Add user_flagged_at  (flagged for review/moderation)
-  // TODO: Add internally_flagged_at (flagged for review/moderation by internal team/system)
+  // TODO: Add system_flagged_at (flagged for review/moderation by internal team/system)
   createdAt   DateTime      @default(now()) @map("created_at")
   updatedAt   DateTime      @default(now()) @updatedAt @map("updated_at")
 
   @@map("articles")
 }
 
+// TODO: Rename to ArticleGenerationStatus
 enum ArticleStatus {
   PENDING
   ERROR
   COMPLETE
-  // TODO: Add DELETED, ARCHIVED
 }
 
 // TODO: Add article image model with a foreign key to article
