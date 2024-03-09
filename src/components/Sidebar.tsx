@@ -1,6 +1,7 @@
 "use client";
 
 import { Archive, FileText, Layers, LucideIcon, Plug, Settings, Settings2 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -8,8 +9,6 @@ import React from "react";
 import { cn } from "@/lib/utils";
 
 import { buttonVariants } from "@/components/ui/button";
-
-import Nextword from "~/svg/Nextword.svg";
 
 export interface NavLink {
   title: string;
@@ -64,7 +63,7 @@ export function Sidebar() {
     <div className="shadow-blue-gray-900/5 group flex h-[calc(100vh)] w-full max-w-[16rem] flex-col gap-4 py-2 shadow-xl">
       <div className="mb-2 p-4">
         <Link href="/">
-          <Nextword className="h-12 w-48" />
+          <Image src="/svg/Nextword.svg" width="48" height="12" className="h-12 w-48" alt="Nextword" />
         </Link>
       </div>
       <nav className="grid gap-1 px-2 group-[[data-collapsed=true]]:justify-center group-[[data-collapsed=true]]:px-2">
