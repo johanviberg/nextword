@@ -14,7 +14,7 @@
     "test": "jest",
     "format": "prettier -w .",
     "format:check": "prettier -c .",
-    "postinstall": "if [ \"$NODE_ENV\" == \"production\" ]; then prisma generate; prisma migrate dev; fi",
+    "postinstall": "prisma generate && prisma migrate dev",
     "prepare": "husky install"
   },
   "dependencies": {
