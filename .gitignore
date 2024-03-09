@@ -45,4 +45,5 @@ sitemap-*.xml
 # custom ignores
 .idea/
 nextword.iml
+qodana.yaml
 .envrc
