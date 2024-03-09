@@ -14,7 +14,7 @@
     "test": "jest",
     "format": "prettier -w .",
     "format:check": "prettier -c .",
-    "postinstall": "npx prisma generate && npx prisma migrate dev",
+    "postinstall": "if [ \"$NODE_ENV\" == \"production\" ]; then npx prisma generate && npx prisma migrate dev; fi",
     "prepare": "npx husky install"
   },
   "dependencies": {
