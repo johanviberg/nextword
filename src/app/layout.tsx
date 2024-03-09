@@ -21,9 +21,6 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   robots: { index: true, follow: true },
-  // TODO: Replace with own favicon
-  // !STARTERCONF this is the default favicon, you can generate your own from https://realfavicongenerator.net/
-  // ! copy to /favicon folder
   icons: {
     icon: "/favicon/favicon.ico",
     shortcut: "/favicon/favicon-16x16.png",
@@ -35,7 +32,7 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     siteName: siteConfig.title,
-    images: [`${siteConfig.url}/images/og.jpg`],
+    images: [`${siteConfig.url}/api/og`],
     type: "website",
     locale: "en_US",
   },
@@ -43,7 +40,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.description,
-    images: [`${siteConfig.url}/images/og.jpg`],
+    images: [`${siteConfig.url}/api/og`],
     creator: "@NextWordAI",
   },
   authors: [
