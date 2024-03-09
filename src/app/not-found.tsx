@@ -3,7 +3,7 @@ import * as React from "react";
 import { RiAlarmWarningFill } from "react-icons/ri";
 
 export const metadata: Metadata = {
-  title: "Not Found",
+  title: "Nextword | Page Not Found",
 };
 
 export default function NotFound() {
